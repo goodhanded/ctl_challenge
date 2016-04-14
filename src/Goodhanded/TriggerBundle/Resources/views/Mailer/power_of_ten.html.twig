@@ -1,0 +1,5 @@
+{% extends 'GoodhandedTriggerBundle:Mailer:base.html.twig' %}
+{% block body %}
+	<h1>Power of Ten Alert</h1>
+    <p>{{event.item.name}} quantity ({{event.item.quantity}}) has reached a power of ten!</p>
+{% endblock %}

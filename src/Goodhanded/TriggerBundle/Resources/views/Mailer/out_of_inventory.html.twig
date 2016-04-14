@@ -1,0 +1,5 @@
+{% extends 'GoodhandedTriggerBundle:Mailer:base.html.twig' %}
+{% block body %}
+	<h1>Out of Inventory Alert</h1>
+    <p>{{event.item.name}} has run out of inventory.</p>
+{% endblock %}

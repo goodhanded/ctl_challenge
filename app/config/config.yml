@@ -64,3 +64,40 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Pipeline Bundle Configuration
+goodhanded_pipeline:
+    db_driver:      "%pipeline_db_driver%"
+    item_class:     "%pipeline_item_class%"
+
+# Trigger Bundle Configuration
+goodhanded_trigger:
+    events: ['tracker.updated']
+    triggers:
+        item_specific:
+            apples:
+                match: item.name
+                trigger: goodhanded_trigger.t.quantity_zero
+                properties:
+                    quantity: item.count
+                action: goodhanded_trigger.a.out_of_inventory_email
+            messages:
+                match: item.name
+                trigger: goodhanded_trigger.t.quantity_power_of_ten
+                properties:
+                    quantity: item.count
+                action: goodhanded_trigger.a.power_of_ten_email
+        all_items:
+            any_even:
+                trigger: goodhanded_trigger.t.quantity_even_number
+                properties:
+                    quantity: item.count
+                action: goodhanded_trigger.a.even_number_email
+
+
+
+
+
+            
+
+

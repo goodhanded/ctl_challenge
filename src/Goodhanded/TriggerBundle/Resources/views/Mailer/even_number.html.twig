@@ -1,0 +1,5 @@
+{% extends 'GoodhandedTriggerBundle:Mailer:base.html.twig' %}
+{% block body %}
+	<h1>Even Number Alert</h1>
+    <p>{{event.item.name}} quantity ({{event.item.count}}) is an even number!</p>
+{% endblock %}

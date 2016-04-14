@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    
+    <services>
+        <service id="goodhanded_trigger.event_processor" class="Goodhanded\TriggerBundle\EventListener\EventProcessor" shared="false">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="goodhanded_trigger.object_property_extractor" class="Goodhanded\TriggerBundle\Service\ObjectPropertyExtractor"/>
+        <service id="goodhanded_trigger.event_property_mapper" class="Goodhanded\TriggerBundle\Service\EventPropertyMapper" shared="false">
+            <argument type="service" id="goodhanded_trigger.object_property_extractor"/>
+        </service>
+
+        <!-- Trigger Services -->
+        <service id="goodhanded_trigger.t.quantity_zero" class="Goodhanded\TriggerBundle\Triggers\QuantityZero"/>
+        <service id="goodhanded_trigger.t.quantity_even_number" class="Goodhanded\TriggerBundle\Triggers\QuantityEvenNumber"/>
+        <service id="goodhanded_trigger.t.quantity_power_of_ten" class="Goodhanded\TriggerBundle\Triggers\QuantityPowerOfTen"/>
+
+        <!-- Action Services -->
+        <service id="goodhanded_trigger.a.email_action" class="Goodhanded\TriggerBundle\Actions\EmailAction" abstract="true">
+            <call method="setTwig">
+                <argument type="service" id="templating"/>
+            </call>
+            <call method="setMailer">
+                <argument type="service" id="mailer"/>
+            </call>
+        </service>
+        <service id="goodhanded_trigger.a.power_of_ten_email" class="Goodhanded\TriggerBundle\Actions\PowerOfTenEmailAction" parent="goodhanded_trigger.a.email_action"/>
+        <service id="goodhanded_trigger.a.even_number_email" class="Goodhanded\TriggerBundle\Actions\EvenNumberEmailAction" parent="goodhanded_trigger.a.email_action"/>
+        <service id="goodhanded_trigger.a.out_of_inventory_email" class="Goodhanded\TriggerBundle\Actions\OutOfInventoryEmailAction" parent="goodhanded_trigger.a.email_action"/>
+    </services>
+    
+</container>

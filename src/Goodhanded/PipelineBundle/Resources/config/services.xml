@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="goodhanded_pipeline.tracker.abstract" class="Goodhanded\PipelineBundle\Model\AbstractTracker" abstract="true">
+            <call method="setDispatcher">
+                <argument type="service" id="event_dispatcher" />
+            </call>
+            <call method="setItemClass">
+                <argument>%pipeline_item_class%</argument>
+            </call>
+        </service>
+
+        <service id="goodhanded_pipeline.tracker.orm" class="Goodhanded\PipelineBundle\Entity\Tracker" parent="goodhanded_pipeline.tracker.abstract">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="goodhanded_pipeline.tracker.factory" class="Goodhanded\PipelineBundle\Model\TrackerFactory">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="goodhanded_pipeline.tracker" class="Goodhanded\PipelineBundle\Entity\Tracker">
+            <factory service="goodhanded_pipeline.tracker.factory" method="createTracker"/>
+            <argument>%pipeline_db_driver%</argument>
+        </service>
+    </services>
+
+</container>

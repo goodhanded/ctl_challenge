@@ -1,3 +1,11 @@
+goodhanded_trigger:
+    resource: "@GoodhandedTriggerBundle/Resources/config/routing.xml"
+    prefix:   /
+
+goodhanded_pipeline:
+    resource: "@GoodhandedPipelineBundle/Resources/config/routing.xml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
