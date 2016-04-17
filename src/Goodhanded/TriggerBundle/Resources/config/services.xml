@@ -5,13 +5,13 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     
     <services>
-        <service id="goodhanded_trigger.event_processor" class="Goodhanded\TriggerBundle\EventListener\EventProcessor" shared="false">
+        <service id="goodhanded_trigger.event_processor" class="Goodhanded\TriggerBundle\EventListener\EventProcessor">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
         </service>
         <service id="goodhanded_trigger.object_property_extractor" class="Goodhanded\TriggerBundle\Service\ObjectPropertyExtractor"/>
-        <service id="goodhanded_trigger.event_property_mapper" class="Goodhanded\TriggerBundle\Service\EventPropertyMapper" shared="false">
+        <service id="goodhanded_trigger.event_property_mapper" class="Goodhanded\TriggerBundle\Service\EventPropertyMapper">
             <argument type="service" id="goodhanded_trigger.object_property_extractor"/>
         </service>
 
