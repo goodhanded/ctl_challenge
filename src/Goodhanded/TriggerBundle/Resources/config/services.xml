@@ -16,9 +16,9 @@
         </service>
 
         <!-- Trigger Services -->
-        <service id="goodhanded_trigger.t.quantity_zero" class="Goodhanded\TriggerBundle\Triggers\QuantityZero"/>
-        <service id="goodhanded_trigger.t.quantity_even_number" class="Goodhanded\TriggerBundle\Triggers\QuantityEvenNumber"/>
-        <service id="goodhanded_trigger.t.quantity_power_of_ten" class="Goodhanded\TriggerBundle\Triggers\QuantityPowerOfTen"/>
+        <service id="goodhanded_trigger.t.quantity_zero" class="Goodhanded\TriggerBundle\Triggers\QuantityZero" shared="false"/>
+        <service id="goodhanded_trigger.t.quantity_even_number" class="Goodhanded\TriggerBundle\Triggers\QuantityEvenNumber" shared="false"/>
+        <service id="goodhanded_trigger.t.quantity_power_of_ten" class="Goodhanded\TriggerBundle\Triggers\QuantityPowerOfTen" shared="false"/>
 
         <!-- Action Services -->
         <service id="goodhanded_trigger.a.email_action" class="Goodhanded\TriggerBundle\Actions\EmailAction" abstract="true">
