@@ -18,7 +18,8 @@ class Tracker extends AbstractTracker
 
 	public function track ($name, $count) 
 	{
-		$item = $this->em->getRepository($this->itemClass)->findOneByName($name);
+		$item = $this->em->getRepository($this->itemClass)
+			->findOneBy(array('name' => $name));
 
 		if (!$item) 
 		{
