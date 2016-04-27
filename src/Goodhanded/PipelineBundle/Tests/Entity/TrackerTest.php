@@ -56,7 +56,6 @@ class TrackerTest extends WebTestCase
     public function testExistingItem()
     {
         // We'll return this item as if it had already existed in the DB.
-        $itemClass = TrackerTest::ITEM_CLASS;
         $item = new TestItem();
         $item->setName(TrackerTest::ITEM_NAME);
         $item->setCount(TrackerTest::ORIGINAL_COUNT);
