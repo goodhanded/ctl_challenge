@@ -39,6 +39,7 @@ class TrackerTest extends WebTestCase
             ->will($this->returnCallback(function ($eventName, $event) {
                 \PHPUnit_Framework_Assert::assertEquals(TrackEvent::NAME, $eventName);
                 \PHPUnit_Framework_Assert::assertEquals(TrackerTest::ITEM_NAME, $event->getItem()->getName());
+                \PHPUnit_Framework_Assert::assertEquals(TrackerTest::COUNT_CHANGE, $event->getChanged());
             }));
     
         // Init unit under test
@@ -77,6 +78,7 @@ class TrackerTest extends WebTestCase
             ->will($this->returnCallback(function ($eventName, $event) {
                 \PHPUnit_Framework_Assert::assertEquals(TrackEvent::NAME, $eventName);
                 \PHPUnit_Framework_Assert::assertEquals(TrackerTest::ITEM_NAME, $event->getItem()->getName());
+                \PHPUnit_Framework_Assert::assertEquals(TrackerTest::COUNT_CHANGE, $event->getChanged());
                 \PHPUnit_Framework_Assert::assertEquals(
                     TrackerTest::ORIGINAL_COUNT + TrackerTest::COUNT_CHANGE, 
                     $event->getItem()->getCount()
